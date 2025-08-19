@@ -4,12 +4,48 @@ description: "Setup Azure account for Ginko Cloud optimization (5-7 min.)"
 ---
 
 <Info>
-  **Prerequisite**:  Azure Admin / Account Owner privileges
+  **Prerequisite**:  Azure Admin / account owner privileges
 </Info>
 
-Follow these steps to install and run Mintlify on your operating system:
+### **<Tooltip tip="">Requirem</Tooltip>ents**
 
-**Step 1**: Install Mintlify:
+- Tenant ID
+- Service Principle (Ginko_Connect)
+- Secret Key
+- Subscription ID
+- Guest User (op@ginkocloud.com)
+
+All users will require  "Reader" role to analyze your Azure resources.
+
+**Step 1**: Tenant ID
+
+1. Login to [<u>Azure Portal</u>](https://portal.azure.com) → navigate to **Microsoft Entra ID**
+2. Click **Overview**
+3. Copy **Tenant ID **(save for later)
+
+![tenant_ID.png](/images/tenant_ID.png)
+
+**Step 2**: App Registration
+
+1. In **Microsoft Entra ID**
+2. Click **App registrations** → **New registration**
+
+   ![new_app.png](/images/new_app.png)
+3. In the Register an application page, enter:
+
+   **・ Name:** Ginko_Connection
+
+   **・ Account type:** Single tenant (default)
+
+   **・ Redirect URI:** (optional - leave blank)
+4. Click **Register**
+
+   ![configure.png](/images/configure.png)
+5. Copy **Application ID **(save for later)
+6. 
+
+
+1. Copy **Tenant ID **(save for later)
 
 <CodeGroup>
 
@@ -23,8 +59,6 @@ yarn global add mintlify
 ```
 
 </CodeGroup>
-
-**Step 2**: Navigate to the docs directory (where the `docs.json` file is located) and execute the following command:
 
 ```bash
 mintlify dev
