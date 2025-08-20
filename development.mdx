@@ -7,7 +7,7 @@ description: "Setup Azure account for Ginko Cloud optimization (5-7 min.)"
   **Prerequisite**:  Azure Admin / account owner privileges
 </Info>
 
-### **<Tooltip tip="">Requirem</Tooltip>ents**
+### **Requirements**
 
 - Tenant ID
 - Service Principle (Ginko_Connect)
@@ -15,60 +15,54 @@ description: "Setup Azure account for Ginko Cloud optimization (5-7 min.)"
 - Subscription ID
 - Guest User (op@ginkocloud.com)
 
-All users will require  "Reader" role to analyze your Azure resources.
+Both app and user require  "Reader" role to analyze your Azure resources.
 
-**Step 1**: Tenant ID
+### **Step 1**:  Tenant ID
 
-1. Login to [<u>Azure Portal</u>](https://portal.azure.com) → navigate to **Microsoft Entra ID**
+1. Login to [<u>Azure Portal</u>](https://portal.azure.com)  →  **Microsoft Entra ID**
 2. Click **Overview**
-3. Copy **Tenant ID **(save for later)
+3. Copy **Tenant ID** (save for later)
 
 ![tenant_ID.png](/images/tenant_ID.png)
 
-**Step 2**: App Registration
+### **Step 2**:  Service Principle
 
-1. In **Microsoft Entra ID**
-2. Click **App registrations** → **New registration**
+ 1. In **Microsoft Entra ID**
+ 2. Click **App registrations** → **New registration**
 
-   ![new_app.png](/images/new_app.png)
-3. In the Register an application page, enter:
+    ![new_app.png](/images/new_app.png)
+ 3. In **App registrations**, enter:
 
-   **・ Name:** Ginko_Connection
+    **・ Name:** Ginko_Connection
 
-   **・ Account type:** Single tenant (default)
+    **・ Account type:** Single tenant (default)
 
-   **・ Redirect URI:** (optional - leave blank)
-4. Click **Register**
+    **・ Redirect URI:** (optional - leave blank)
+ 4. Click **Register**
 
-   ![configure.png](/images/configure.png)
-5. Copy **Application ID **(save for later)
-6. 
+    ![configure.png](/images/configure.png)
+ 5. Copy **Application ID** (save for later)
+ 6. Click **Client credentials**: Add a certificate or secret
 
+    ![app_ID.png](/images/app_ID.png)
+ 7. Click **New client secret**
+ 8. In **Add a client secret**, enter:
 
-1. Copy **Tenant ID **(save for later)
+    **・ Description:** GinkoKey
 
-<CodeGroup>
+    **・ Expires:** 1 year (365 days)
+ 9. Click **Add**
+10. Copy \*\*Secret Key ID \*\*(save for later)
 
-```bash npm
-npm i -g mintlify
-```
+    ![secret_key.png](/images/secret_key.png)
 
+**Step 3**: Subscription ID (for Ginko API)
 
-```bash yarn
-yarn global add mintlify
-```
+1. Navigate to **Subscriptions**
+2. Click**a subscription**  to open the configuration page
+3. Copy the Subscription ID (save for later) You will need the Subscription ID to initiate data collection, when using the Densify API.
 
-</CodeGroup>
-
-```bash
-mintlify dev
-```
-
-A local preview of your documentation will be available at `http://localhost:3000`.
-
-### Custom Ports
-
-By default, Mintlify uses port 3000. You can customize the port Mintlify runs on by using the `--port` flag. To run Mintlify on port 3333, for instance, use this command:
+We need the Subscription ID to initiate data collection when using the Ginko API.
 
 ```bash
 mintlify dev --port 3333
